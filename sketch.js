@@ -23,18 +23,21 @@ function mousePressed() {
 }
 
 function draw() {
-  background(51);
+  background(0,0,0);
 
   if (s.eat(food)) {
     pickLocation();
   }
+  push();
   s.death();
   s.update();
   s.show();
-
-
-  fill(255, 0, 100);
+  pop();
+  
+  push();
+  fill(255, 0, 0);
   rect(food.x, food.y, scl, scl);
+  pop();
 }
 
 
