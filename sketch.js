@@ -36,7 +36,7 @@ function draw() {
   
   push();
   fill(255, 0, 0);
-  rect(food.x, food.y, scl, scl);
+  ellipse(food.x + scl/2, food.y + scl/2, scl, scl);
   pop();
 }
 
