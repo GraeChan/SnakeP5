@@ -14,7 +14,7 @@ function setup() {
 function pickLocation() {
   var cols = floor(width/scl);
   var rows = floor(height/scl);
-  food = createVector(floor(random(cols)), floor(random(rows)));
+  food = createVector(floor(random(2, cols-2)), floor(random(3,rows-1)));
   food.mult(scl);
 }
 
@@ -24,6 +24,15 @@ function mousePressed() {
 
 function draw() {
   background(0,0,0);
+	
+  push();
+  noStroke();
+  fill(255,255,0);
+  rect(0,scl*2,width,scl)
+  rect(0,height-scl,width,scl);
+  rect(0,scl*3,scl,height-scl)
+  rect(width-scl,scl*3,scl,height-scl);
+  pop();
 
   if (s.eat(food)) {
     pickLocation();
