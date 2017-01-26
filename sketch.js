@@ -1,5 +1,6 @@
 var s;
 var scl = 20;
+var scoreVal = 0;
 
 var food;
 
@@ -24,6 +25,9 @@ function mousePressed() {
 
 function draw() {
   background(0,0,0);
+  
+  title();
+  score();
 	
   push();
   noStroke();
@@ -44,14 +48,29 @@ function draw() {
   pop();
   
   push();
+  noStroke();
   fill(255, 0, 0);
   ellipse(food.x + scl/2, food.y + scl/2, scl, scl);
   pop();
 }
 
+function title()
+{
+	push();
+	fill(0, 255, 0);
+	textSize(32);
+	text("SNAKE", scl, scl*1.75);
+	pop();
+}
 
-
-
+function score()
+{
+	push();
+	fill(255, 0, 0);
+	textSize(32);
+	text("SCORE: " + scoreVal, width-width/3, scl*1.75);
+	pop();
+}
 
 function keyPressed() {
   if (keyCode === UP_ARROW) {

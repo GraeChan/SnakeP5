@@ -29,6 +29,7 @@ function Snake() {
         console.log('starting over');
         this.total = 0;
         this.tail = [];
+		scoreVal = 0;
       }
     }
   }
@@ -53,6 +54,7 @@ function Snake() {
     fill(0,255,0);
     for (var i = 0; i < this.tail.length; i++) {
       rect(this.tail[i].x, this.tail[i].y, scl, scl, 5);
+	  scoreVal = i+1;
     }
     ellipse(this.x + scl/2, this.y + scl/2, scl, scl);
 
