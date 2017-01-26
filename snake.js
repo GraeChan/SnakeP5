@@ -5,11 +5,14 @@ function Snake() {
   this.yspeed = 0;
   this.total = 0;
   this.tail = [];
+  this.score = 0;
+  this.lives = 3;
 
   this.eat = function(pos) {
     var d = dist(this.x, this.y, pos.x, pos.y);
     if (d < 1) {
       this.total++;
+	  this.score+=1;
       return true;
     } else {
       return false;
@@ -29,7 +32,11 @@ function Snake() {
         console.log('starting over');
         this.total = 0;
         this.tail = [];
-		scoreVal = 0;
+		if(this.score >0)
+		{
+			this.lives -=1;
+			this.score = 0;
+		}
       }
     }
   }
@@ -54,9 +61,8 @@ function Snake() {
     fill(0,255,0);
     for (var i = 0; i < this.tail.length; i++) {
       rect(this.tail[i].x, this.tail[i].y, scl, scl, 5);
-	  scoreVal = i+1;
     }
     ellipse(this.x + scl/2, this.y + scl/2, scl, scl);
-
+	
   }
 }

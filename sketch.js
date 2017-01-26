@@ -1,11 +1,10 @@
 var s;
 var scl = 20;
-var scoreVal = 0;
 
 var food;
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(640, 480);
   s = new Snake();
   frameRate(10);
   pickLocation();
@@ -28,7 +27,9 @@ function draw() {
   
   title();
   score();
-	
+  lives();
+  
+  
   push();
   noStroke();
   fill(255,255,0);
@@ -52,6 +53,14 @@ function draw() {
   fill(255, 0, 0);
   ellipse(food.x + scl/2, food.y + scl/2, scl, scl);
   pop();
+  
+  if(s.lives == 0)
+  {
+	  frameRate = 0;
+	  gameOver();
+  }
+  
+   
 }
 
 function title()
@@ -59,7 +68,7 @@ function title()
 	push();
 	fill(0, 255, 0);
 	textSize(32);
-	text("SNAKE", scl, scl*1.75);
+	text("SNAKE", scl*2, scl*1.75);
 	pop();
 }
 
@@ -68,7 +77,61 @@ function score()
 	push();
 	fill(255, 0, 0);
 	textSize(32);
-	text("SCORE: " + scoreVal, width-width/3, scl*1.75);
+	text("SCORE: " + s.score, width-width/3, scl*1.75);
+	pop();
+}
+
+function gameOver()
+{
+	push();
+	fill(255, 255, 255);
+	textSize(64);
+	text("GAME OVER", 125, 260);
+	pop();
+}
+
+function lives()
+{
+	push();
+	noStroke();
+	fill(0, 255, 0);
+	if(s.lives==3)
+	{
+		var x = scl*8 + scl/2
+		for(var i = 0; i < 3; i++)
+		{
+			ellipse(x, scl/1.5 + scl/2, scl, scl);
+			x+=scl*2;
+		}
+	}
+	if(s.lives==2)
+	{
+		var x = scl*8 + scl/2
+		for(var i = 0; i < 2; i++)
+		{
+			ellipse(x, scl/1.5 + scl/2, scl, scl);
+			x+=scl*2;
+		}
+	}
+	 if(s.lives==1)
+	{
+		var x = scl*8 + scl/2
+		for(var i = 0; i < 1; i++)
+		{
+			ellipse(x, scl/1.5 + scl/2, scl, scl);
+			x+=scl*2;
+		}
+	}
+	 if(s.lives==0)
+	{
+		var x = scl*8 + scl/2
+		for(var i = 0; i < 0; i++)
+		{
+			ellipse(x, scl/1.5 + scl/2, scl, scl);
+			x+=scl*2;
+		}
+	}
+	
 	pop();
 }
 
