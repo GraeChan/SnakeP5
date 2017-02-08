@@ -6,13 +6,16 @@ function Snake() {
   this.total = 0;
   this.tail = [];
   this.score = 0;
+  this.totalScore = 0;
   this.lives = 3;
+  this.alive = true;
 
   this.eat = function(pos) {
     var d = dist(this.x, this.y, pos.x, pos.y);
     if (d < 1) {
       this.total++;
 	  this.score+=1;
+	  this.totalScore+=1;
       return true;
     } else {
       return false;

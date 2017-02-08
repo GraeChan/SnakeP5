@@ -56,7 +56,8 @@ function draw() {
   
   if(s.lives == 0)
   {
-	  frameRate = 0;
+	  s.xspeed = 0;
+	  s.yspeed = 0;
 	  gameOver();
   }
   
@@ -77,14 +78,14 @@ function score()
 	push();
 	fill(255, 0, 0);
 	textSize(32);
-	text("SCORE: " + s.score, width-width/3, scl*1.75);
+	text("SCORE: " + s.totalScore, width-width/3, scl*1.75);
 	pop();
 }
 
 function gameOver()
 {
 	push();
-	fill(255, 255, 255);
+	fill(255, 255, 0);
 	textSize(64);
 	text("GAME OVER", 125, 260);
 	pop();
@@ -130,19 +131,24 @@ function lives()
 			ellipse(x, scl/1.5 + scl/2, scl, scl);
 			x+=scl*2;
 		}
+		s.alive = false;
 	}
 	
 	pop();
 }
 
 function keyPressed() {
-  if (keyCode === UP_ARROW) {
-    s.dir(0, -1);
-  } else if (keyCode === DOWN_ARROW) {
-    s.dir(0, 1);
-  } else if (keyCode === RIGHT_ARROW) {
-    s.dir(1, 0);
-  } else if (keyCode === LEFT_ARROW) {
-    s.dir(-1, 0);
-  }
+	if(s.alive == true)
+	{
+		if (keyCode === UP_ARROW) {
+		s.dir(0, -1);
+	  } else if (keyCode === DOWN_ARROW) {
+		s.dir(0, 1);
+	  } else if (keyCode === RIGHT_ARROW) {
+		s.dir(1, 0);
+	  } else if (keyCode === LEFT_ARROW) {
+		s.dir(-1, 0);
+	  }
+	}
+  
 }
